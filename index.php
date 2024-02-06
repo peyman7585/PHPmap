@@ -7,9 +7,10 @@
     <title>7Map</title>
     <link href="favicon.png" rel="shortcut icon" type="image/png">
     <link rel="stylesheet" href="assets/css/leaflet.css" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <script src="assets/js/leaflet.js"></script>
+     <!-- prevent of cache -->
+    <link rel="stylesheet" href="assets/css/styles.css<?php echo "?v=". rand(99,99999)?>" />
+    <script src="assets/js/leaflet.js<?php echo "?v=". rand(99,99999)?>"></script>
 </head>
 
 <body>
@@ -21,18 +22,7 @@
             <div id="map"></div>
         </div>
     </div>
-   
-    <script>
-    
-        const map = L.map('map').setView([35.736431,51.3215528], 13);
-    
-        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="">PHPmap</a>'
-        }).addTo(map);
-         document.getElementById('map').style.setProperty('height', window.innerHeight + 'px');
-    </script>
-    
+    <script src="assets/js/scripts.js"></script>  
 </body>
 
 </html>
