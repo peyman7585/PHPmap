@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7Map</title>
     <link href="favicon.png" rel="shortcut icon" type="image/png">
-    <link rel="stylesheet" href="assets/css/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
      <!-- prevent of cache -->
     <link rel="stylesheet" href="assets/css/styles.css<?php echo "?v=". rand(99,99999)?>" />
-    <script src="assets/js/leaflet.js<?php echo "?v=". rand(99,99999)?>"></script>
+  
 </head>
 
 <body>
