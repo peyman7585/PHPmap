@@ -32,8 +32,11 @@ var EastLine  =map.getBounds().getEast();
 
 // get map Event
 map.on('dblclick',function(event){
-
-
+    
+    L.marker(event.latlng).addTo(map);
+    $('.modal-overlay').fadeIn('500');
+    $('#lat-display').val(event.latlng.lat);
+    $('#lng-display').val(event.latlng.lng);
 });
 
 var current_position,current_accuracy;
@@ -45,20 +48,22 @@ map.on('locationfound',function(e){
         map.removeLayer(current_accuracy);
     }
     var radius=e.accuracy /2;
-    current_position=L.marker(e.latlng).addTo(map).bindPopup("دقت تقریبی " +radius+" متر").openPopup();
-    current_accuracy=L.circle(e.latlng,radius).addTo(map);
+    current_position= L.marker(e.latlng).addTo(map).bindPopup("دقت تقریبی " +radius+" متر").openPopup();
+    current_accuracy= L.circle(e.latlng,radius).addTo(map);
 });
 map.on('locationerror',function(e){
  alert(e.message);
 });
 
-
+/*
 function locate(){
     map.locate({setView:true,maxZoom:defualtzoom})
 }
-
-setInterval(locate,5000);
+*/
+/*
+ setInterval(locate,5000);
  setTimeout(function(){
-  // map.setView([NorthLine,WestLine],defualtzoom);
+ map.setView([NorthLine,WestLine],defualtzoom);
  },4000);
+ */
  
