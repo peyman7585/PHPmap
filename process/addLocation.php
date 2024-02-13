@@ -7,4 +7,8 @@ if(!isAjaxRequest()){
     diePage('Invalid request');
 }
 
-var_dump($_POST);
+if(InsertLocation($_POST)){
+    echo "مکان با موفقیت در پایگاه داده ثبت شد.";
+}else{
+    echo "مکان در پایگاه داده ثبت نشده است";
+}

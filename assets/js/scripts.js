@@ -32,11 +32,20 @@ var EastLine  =map.getBounds().getEast();
 
 // get map Event
 map.on('dblclick',function(event){
-    
+     // 1:add marker in clicked position
     L.marker(event.latlng).addTo(map);
+    //2:open modal(form) for save the clicked location
     $('.modal-overlay').fadeIn('500');
     $('#lat-display').val(event.latlng.lat);
     $('#lng-display').val(event.latlng.lng);
+    $('#l-title').val('');
+    $('#l-type').val(0);
+    //3 done:fill the form and submite data to server
+
+    //4 done:save location in database(status :pending review)
+
+    //5: review locations and verify if ok
+
 });
 
 var current_position,current_accuracy;
@@ -66,4 +75,23 @@ function locate(){
  map.setView([NorthLine,WestLine],defualtzoom);
  },4000);
  */
- 
+
+ $(document).ready(function(){
+    $('form#addLocationForm').submit(function(e){
+    e.preventDefault(); //prevent submit form
+     var form=$(this);
+     var resultTag=form.find('.ajax-result');
+     $.ajax({
+        url: form.attr('action'),
+        method:form.attr('method'),
+        data:form.serialize(),
+        success: function(response){
+            resultTag.html(response);
+        }
+      });
+    });
+
+    $('.modal-overlay .close').click(function(){
+        $('.modal-overlay').fadeOut();
+    });
+});
