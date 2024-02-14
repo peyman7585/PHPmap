@@ -8,3 +8,7 @@ $database_config=(object)
     'db'=>'phpMap'
 
 ];
+
+$admins=[
+    'pym'=>'pym'
+];

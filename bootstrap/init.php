@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "constants.php";
 
 include BASE_PATH."/bootstrap/config.php";
@@ -11,4 +11,5 @@ try {
     diePage('Connection failed: ' . $e->getMessage());
 }
 
+include BASE_PATH . "/libs/lib-users.php";
 include BASE_PATH . "/libs/lib-locations.php";
