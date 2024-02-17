@@ -12,6 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 if(isLoggedin()){
+    $params=$_GET ?? [];
+    $getlocation=GetLocations($params);
+   
     include "template/tpl-admin.php";
 }else{
     include "template/tpl-admin-auth.php";  

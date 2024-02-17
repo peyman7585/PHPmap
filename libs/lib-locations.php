@@ -9,3 +9,16 @@ function InsertLocation($data){
 
     return $stmt->rowCount();
 }
+
+function GetLocations($params=[]){
+     global $pdo;
+     $condition='';   
+    if(isset($params['verfied']) and in_array($params['verfied'],['0','1'])){
+        $condition="where verfied={$params['verfied']}";
+    }
+
+     $sql="SELECT * FROM `locations` $condition";
+     $stmt=$pdo->prepare($sql);
+     $stmt->execute();
+     return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
