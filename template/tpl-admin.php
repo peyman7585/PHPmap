@@ -111,7 +111,9 @@ use Hekmatinasser\Verta\Verta;
             <td class="text-center"><?= $loc->lat; ?></td>
             <td class="text-center"><?= $loc->lng; ?></td>
             <td>
-                <button class="statusToggle <?= $loc->verfied == 1 ? 'active':'' ?>" data-loc='<?= $loc->id; ?>'><?= $loc->verfied == 1 ? 'فعال':'غیر فعال' ?></button> 
+                <button class="statusToggle <?= $loc->verfied ? 'active':'' ?>" data-loc='<?= $loc->id; ?>'>
+                <?= $loc->verfied ? 'فعال':'غیر فعال' ?>
+               </button> 
                 <button class="preview" data-loc='<?= $loc->id; ?>'>👁️‍🗨️</button> 
             </td>
         </tr>
@@ -133,17 +135,20 @@ use Hekmatinasser\Verta\Verta;
 
 
 
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script>
+        
     $(document).ready(function() {
+        
         $('.preview').click(function() {
             $('.modal-overlay').fadeIn();
-            $('#mapWivdow').attr('src','<?=BASE_URL?>');
+            $('#mapWivdow').attr('src','<?=BASE_URL."?loc="?>' + $(this).attr('data-loc'));
         });
         $('.modal-overlay .close').click(function() {
             $('.modal-overlay').fadeOut();
         });
     });
     </script>
+
 </body>
 </html>

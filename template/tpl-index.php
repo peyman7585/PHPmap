@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +70,17 @@
     
     <script src="assets/js/jquery-3.7.1.min.js"></script>  
     <script src="assets/js/scripts.js"></script>  
+
+<script>
+ 
+    <?php if($loca):?>
+        L.marker([<?= $loca->lat?>,<?= $loca->lng?>]).addTo(map).bindPopup("<?= $loca->title?>").openPopup();
+     <?php endif;?>
+</script>
+
+        
+        
+
 
 </body>
 
