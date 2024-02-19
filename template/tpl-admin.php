@@ -55,6 +55,10 @@ use Hekmatinasser\Verta\Verta;
         background: #0c8f10;
         color: #ffffff;
     }
+    .statusToggle.all {
+        background: blue;
+        color: #ffffff;
+    }
     .statusToggle:hover,button.preview:hover {
         opacity: 0.7;
     }
@@ -88,6 +92,7 @@ use Hekmatinasser\Verta\Verta;
         <h1>پنل مدیریت <span style="color:#007bec">php map</span></h1>
         <div class="box">
             <a class="statusToggle" href="<?=BASE_URL?>" target="_blank">🏠</a>
+            <a class="statusToggle all" href="<?=BASE_URL?>/admin.php">همه</a>
             <a class="statusToggle active" href="?verfied=1">فعال</a>
             <a class="statusToggle" href="?verfied=0">غیرفعال</a>
             <a class="statusToggle" href="?logout=1" style="float:left" target="_blank">خروج</a>
@@ -112,7 +117,7 @@ use Hekmatinasser\Verta\Verta;
             <td class="text-center"><?= $loc->lng; ?></td>
             <td>
                 <button class="statusToggle <?= $loc->verfied ? 'active':'' ?>" data-loc='<?= $loc->id; ?>'>
-                تایید
+                تایید   
                </button> 
                 <button class="preview" data-loc='<?= $loc->id; ?>'>👁️‍🗨️</button> 
             </td>
@@ -146,15 +151,17 @@ use Hekmatinasser\Verta\Verta;
 
         $('.statusToggle').click(function(){
           const btn=$(this);
-          const locid=$(this).attr('data-loc');
+          
           $.ajax({
           
             url:'<?php BASE_URL?>process/statusToggle.php',
             method:'POST',
-            data:{loc:locid},
+            data:{loc:btn.attr('data-loc')},
             success:function(response){
-                
-            btn.toggleClass('active');
+               if(response == 1){
+                btn.toggleClass('active');
+               }
+           
             }
         });
         });

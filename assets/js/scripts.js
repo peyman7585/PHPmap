@@ -64,11 +64,11 @@ map.on('locationerror',function(e){
  alert(e.message);
 });
 
-/*
+
 function locate(){
     map.locate({setView:true,maxZoom:defualtzoom})
 }
-*/
+
 /*
  setInterval(locate,5000);
  setTimeout(function(){
