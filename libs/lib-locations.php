@@ -14,7 +14,10 @@ function GetLocations($params=[]){
      global $pdo;
      $condition='';   
     if(isset($params['verfied']) and in_array($params['verfied'],['0','1'])){
-        $condition="where verfied={$params['verfied']}";
+        $condition="WHERE verfied={$params['verfied']}";
+
+    }elseif($params['keyword']){
+        $condition="WHERE verfied = 1 and title LIKE '%{$params['keyword']}%'";
     }
 
      $sql="SELECT * FROM `locations` $condition";

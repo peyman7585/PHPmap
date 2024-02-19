@@ -229,3 +229,6 @@ img.currentLoc:hover {
     cursor: pointer;
     opacity: 0.7;
 }
+.search-results a{
+    text-decoration: none;
+}

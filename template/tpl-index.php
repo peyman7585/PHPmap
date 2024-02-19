@@ -18,8 +18,14 @@
 
 <body>
     <div class="main">
-        <div class="head">
-            <input type="text" id="search" placeholder="دنبال کجا می گردی؟">
+    <div class="head">
+        <div class="search-box">
+         <input type="text" id="search" placeholder="دنبال کجا می گردی؟" autocomplete="none">
+         <div class="clear"></div>
+             <div class="search-results" style="display:none;">
+
+             </div>
+        </div>
         </div>
         <div class="mapContainer">
             <div id="map"></div>
@@ -81,6 +87,21 @@
      $(document).ready(function(){
         $('img.currentLoc').click(function(){
             locate();
+        });
+     });
+
+     $('#search').keyup(function(){
+        const input=$(this);
+        const searchResult=$('.search-results');
+        searchResult.html('در حال جستو جو...');
+        $.ajax({
+            url:'<?php BASE_URL?>process/search.php',
+            method:'POST',
+            data:{keyword:input.val()},
+            success:function(response){
+                searchResult.slideDown().html(response);
+            }
+
         });
      });
 </script>
