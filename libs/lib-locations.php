@@ -31,3 +31,11 @@ function LM_location($id){
     $stmt->execute([':id'=>$id]);
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
+
+function ToggleStatus($id){
+    global $pdo;
+    $sql=" UPDATE `locations` SET verfied = 1 - verfied WHERE id = :id";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute([':id'=>$id]);
+    return $stmt->rowCount();
+}

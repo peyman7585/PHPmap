@@ -1,7 +1,7 @@
 <?php
 include "bootstrap/init.php";
 
-if(isset($_GET['logout']) && $_GET['logout'] ==1 ){
+if(isset($_GET['logout']) && $_GET['logout'] == 1 ){
     logOut();
 }
 if($_SERVER['REQUEST_METHOD'] == 'POST'){

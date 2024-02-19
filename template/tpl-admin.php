@@ -112,7 +112,7 @@ use Hekmatinasser\Verta\Verta;
             <td class="text-center"><?= $loc->lng; ?></td>
             <td>
                 <button class="statusToggle <?= $loc->verfied ? 'active':'' ?>" data-loc='<?= $loc->id; ?>'>
-                <?= $loc->verfied ? 'فعال':'غیر فعال' ?>
+                تایید
                </button> 
                 <button class="preview" data-loc='<?= $loc->id; ?>'>👁️‍🗨️</button> 
             </td>
@@ -134,7 +134,6 @@ use Hekmatinasser\Verta\Verta;
     </div>
 
 
-
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script>
         
@@ -142,8 +141,24 @@ use Hekmatinasser\Verta\Verta;
         
         $('.preview').click(function() {
             $('.modal-overlay').fadeIn();
-            $('#mapWivdow').attr('src','<?=BASE_URL."?loc="?>' + $(this).attr('data-loc'));
+            $('#mapWivdow').attr('src','<?=BASE_URL?>?loc=' + $(this).attr('data-loc'));
         });
+
+        $('.statusToggle').click(function(){
+          const btn=$(this);
+          const locid=$(this).attr('data-loc');
+          $.ajax({
+          
+            url:'<?php BASE_URL?>process/statusToggle.php',
+            method:'POST',
+            data:{loc:locid},
+            success:function(response){
+                
+            btn.toggleClass('active');
+            }
+        });
+        });
+        
         $('.modal-overlay .close').click(function() {
             $('.modal-overlay').fadeOut();
         });
